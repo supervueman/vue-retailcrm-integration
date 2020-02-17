@@ -6,8 +6,9 @@
 		"commonjs": true
 	},
 	"parserOptions": {
+		"parser": "babel-eslint",
 		"semi": ["always"],
-		"ecmaVersion": 8,
+		"ecmaVersion": 2018,
 		"sourceType": "module",
 		"jsx": false
 	}
