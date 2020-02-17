@@ -1,12 +1,14 @@
 {
-	"parser": "babel-eslint",
+	"extends": "eslint:recommended",
+	"parser": "vue-eslint-parser",
+	"env": {
+		"node": true,
+		"commonjs": true
+	},
 	"parserOptions": {
 		"semi": ["always"],
 		"ecmaVersion": 8,
 		"sourceType": "module",
-		"ecmaFeatures": {
-			"jsx": true,
-			"modules": true
-		}
+		"jsx": false
 	}
 }
