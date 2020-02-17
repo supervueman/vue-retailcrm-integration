@@ -1,11 +1,24 @@
 <template>
   <div class="home">
-    <button>Click</button>
+    <div>{{orders}}</div>
+    <button @click="fetchOrders">Click</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+
+  computed: {
+    orders() {
+      return this.$store.getters.getOrders;
+    }
+  },
+
+  methods: {
+    async fetchOrders() {
+      await this.$store.dispatch("fetchOrders");
+    }
+  }
 };
 </script>
