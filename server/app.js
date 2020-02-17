@@ -44,9 +44,7 @@ app.get('/', async (req, res) => {
 			throw new Error(response.errorMsg() || 'Some mistake');
 		})
 		.then(orders => {
-			res.send({
-				orders
-			});
+			res.send(orders);
 		});
 });
 

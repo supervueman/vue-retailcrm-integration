@@ -17,14 +17,13 @@ export default new Vuex.Store({
     async fetchOrders({
       commit
     }) {
-      const data = await axios.get('http://localhost:3000');
-      console.log(data);
-      if (data.orders) {
-        commit('setOrders', data.orders);
+      const response = await axios.get('http://localhost:3000');
+      if (response.status === 200) {
+        commit('setOrders', response.data);
       }
     }
   },
-  modules: {
+  getters: {
     getOrders(state) {
       return state.orders;
     }
