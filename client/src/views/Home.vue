@@ -1,12 +1,17 @@
 <template>
   <div class="page">
-    <button class="btn" @click="fetchOrders">FETCH ORDERS</button>
+    <header class="toolbar">
+      <button class="btn" @click="fetchOrders">FETCH ORDERS</button>
+      <button class="btn" @click="createOrder">CREATE ORDER</button>
+    </header>
+
     <section class="section">
       <div class="order-card" v-for="order in orders" :key="order.id">
         <div class="order-card-inner">
           <h3>Order number: {{order.number}}</h3>
           <h3>Summ: {{order.summ}}</h3>
           <h3>Delivery cost: {{order.delivery.cost}}</h3>
+          <pre>{{order.items}}</pre>
         </div>
       </div>
     </section>
@@ -17,6 +22,10 @@
 export default {
   name: "Home",
 
+  data: () => ({
+    order: {}
+  }),
+
   computed: {
     orders() {
       return this.$store.getters.getOrders;
@@ -26,6 +35,10 @@ export default {
   methods: {
     async fetchOrders() {
       await this.$store.dispatch("fetchOrders");
+    },
+
+    async createOrder() {
+      await this.$store.dispatch("createOrder");
     }
   }
 };
@@ -43,6 +56,7 @@ export default {
     border: 1px solid
     outline: none
     cursor: pointer
+    margin-right: 20px
     &:hover
       background-color: #000
       color: #fff

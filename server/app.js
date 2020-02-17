@@ -48,6 +48,24 @@ app.get('/', async (req, res) => {
 		});
 });
 
+app.post('/', async (req, res) => {
+	Client.orders
+		.create({
+			firstName: 'Rinat',
+			externalId: 'a139'
+		})
+		.then(response => {
+			if (!response.error) {
+				return response.getFromBody('order');
+			}
+
+			throw new Error(response.errorMsg() || 'Some mistake');
+		})
+		.then(order => {
+			res.send(order);
+		});
+});
+
 app.listen(3000, () => {
 	console.log('App listen on http://localhost:3000');
 });
