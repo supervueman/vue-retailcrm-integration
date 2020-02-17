@@ -42,6 +42,10 @@ export default {
     padding: 10px 20px
     border: 1px solid
     outline: none
+    cursor: pointer
+    &:hover
+      background-color: #000
+      color: #fff
   .section
     display: flex
     flex-wrap: wrap
