@@ -5,9 +5,5 @@
 </template>
 
 <script>
-export default {
-  mounted() {
-    console.log(this.$axios);
-  }
-};
+export default {};
 </script>

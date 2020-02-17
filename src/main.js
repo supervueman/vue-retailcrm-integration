@@ -7,8 +7,7 @@ import axios from 'axios';
 Vue.config.productionTip = false;
 
 axios.create({
-  baseURL: process.env.VUE_APP_BASE_URL,
-  timeout: 1000,
+  baseURL: process.env.VUE_APP_API_URL,
   headers: {
     'X-Custom-Header': 'foobar'
   }
