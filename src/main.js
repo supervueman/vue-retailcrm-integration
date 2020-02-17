@@ -14,9 +14,10 @@ axios.create({
   }
 });
 
+Vue.prototype.$axios = axios;
+
 new Vue({
   router,
   store,
-  axios,
   render: h => h(App)
 }).$mount('#app');
