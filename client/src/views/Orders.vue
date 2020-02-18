@@ -5,17 +5,18 @@
     </header>
 
     <SectionBlock>
-      <Container :columns="3">
-        <Card v-for="product in products" :key="product.id">
-          <div class="card--media">
-            <img :src="product.imageUrl" alt />
-          </div>
+      <Container>
+        <Card v-for="order in orders" :key="order.id">
           <div class="card--content">
-            <h3>{{product.name}}</h3>
-            <h3>{{product.maxPrice}} руб.</h3>
-          </div>
-          <div class="card--actions">
-            <Btn class="card--btn">Add to cart</Btn>
+            <h3>Order number: {{ order.number }}</h3>
+            <h3>Summ: {{ order.summ }}</h3>
+            <h3>Delivery cost: {{ order.delivery.cost }}</h3>
+            <h3>Products list:</h3>
+            <div class="card--item" v-for="item in order.items" :key="item.id">
+              <h4>Name: {{item.offer.displayName}}</h4>
+              <h4>Price: {{item.initialPrice}} руб.</h4>
+              <h4>Quantity: {{item.quantity}} {{item.offer.unit.sym}}</h4>
+            </div>
           </div>
         </Card>
       </Container>
@@ -41,7 +42,6 @@ export default {
 
   data: () => ({
     order: {
-      externalId: "",
       firstName: "Rinat",
       items: [
         {
@@ -55,18 +55,18 @@ export default {
   }),
 
   computed: {
-    products() {
-      return this.$store.getters.getProducts;
+    orders() {
+      return this.$store.getters.getOrders;
     }
   },
 
   async mounted() {
-    await this.fetchProducts();
+    await this.fetchOrders();
   },
 
   methods: {
-    async fetchProducts() {
-      await this.$store.dispatch("fetchProducts");
+    async fetchOrders() {
+      await this.$store.dispatch("fetchOrders");
     },
 
     async createOrder() {
@@ -75,7 +75,3 @@ export default {
   }
 };
 </script>
-
-<style lang="sass">
-
-</style>

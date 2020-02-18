@@ -1,12 +1,19 @@
 <template>
-  <div class="container">
+  <div class="container" :style="{'grid-template-columns': `repeat(${columns}, 1fr)`}">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Container"
+  name: "Container",
+
+  props: {
+    columns: {
+      type: Number,
+      default: 1
+    }
+  }
 };
 </script>
 

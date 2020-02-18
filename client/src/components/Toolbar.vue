@@ -1,7 +1,8 @@
 <template>
   <header class="toolbar">
     <Link to="/">Main</Link>
-    <Link to="/products">Products</Link>
+    <Link to="/orders">Orders</Link>
+    <Link to="/cart">Cart</Link>
   </header>
 </template>
 
@@ -18,10 +19,10 @@ export default {
 </script>
 
 <style lang="sass">
-	.toolbar
-		display: flex
-		align-items: center
-		width: 100%
-		height: 50px
-		padding: 0 20px
+.toolbar
+	display: flex
+	align-items: center
+	width: 100%
+	height: 50px
+	padding: 0 20px
 </style>

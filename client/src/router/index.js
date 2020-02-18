@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import Products from '../views/Products.vue';
+import Orders from '../views/Orders.vue';
+import Cart from '../views/Cart.vue';
 
 Vue.use(VueRouter);
 
@@ -11,9 +12,14 @@ const routes = [{
     component: Home
   },
   {
-    path: '/products',
-    name: 'Products',
-    component: Products
+    path: '/orders',
+    name: 'Orders',
+    component: Orders
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
   }
 ];
 

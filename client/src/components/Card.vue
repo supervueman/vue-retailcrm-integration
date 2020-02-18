@@ -33,4 +33,6 @@ export default {
 				border: none
 				border-top: 1px solid #000
 				margin: 0
+		&--item
+			border-top: 1px solid grey
 </style>
