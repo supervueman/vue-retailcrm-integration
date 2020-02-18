@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     order: {},
-    orders: []
+    orders: [],
+    products: []
   },
   mutations: {
     setOrders(state, payload) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     setOrder(state, payload) {
       state.order = payload;
+    },
+    setProducts(state, payload) {
+      state.products = payload;
     }
   },
   actions: {
@@ -32,10 +36,18 @@ export default new Vuex.Store({
     }, payload) {
       const response = await axios.post('http://localhost:3000', payload);
 
-      console.log(response)
-
       if (response.status === 201) {
         commit('setOrder', response.data);
+      }
+    },
+
+    async fetchProducts({
+      commit
+    }) {
+      const response = await axios.get('http://localhost:3000/products');
+      console.log(response)
+      if (response.status === 200) {
+        commit('setProducts', response.data);
       }
     }
   },
@@ -45,6 +57,9 @@ export default new Vuex.Store({
     },
     getOrder(state) {
       return state.order;
-    }
+    },
+    getProducts(state) {
+      return state.products;
+    },
   }
 });

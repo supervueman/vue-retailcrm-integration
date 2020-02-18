@@ -1,9 +1,29 @@
 <template>
   <div id="app">
+    <Toolbar />
     <router-view />
   </div>
 </template>
 
 <script>
-export default {};
+import Toolbar from "@/components/Toolbar";
+
+export default {
+  components: {
+    Toolbar
+  }
+};
 </script>
+
+<style lang="sass">
+  *
+    box-sizing: border-box
+  html
+    font-family: sans-serif
+    overflow-x: hidden
+    width: 100%
+  body
+    margin: 0
+    overflow-x: hidden
+    width: 100%
+</style>
