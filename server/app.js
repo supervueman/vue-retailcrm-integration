@@ -1,8 +1,15 @@
 const express = require('express');
 const RetailCRM = require('node-retailcrm-api');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
 	const allowedOrigins = 'http://localhost:8080';
@@ -50,10 +57,7 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
 	Client.orders
-		.create({
-			firstName: 'Rinat',
-			externalId: 'a139'
-		})
+		.create(req.body)
 		.then(response => {
 			if (!response.error) {
 				return response.getFromBody('order');
