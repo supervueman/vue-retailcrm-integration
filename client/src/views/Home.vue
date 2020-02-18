@@ -1,26 +1,20 @@
 <template>
-  <div class="page">
-    <header class="toolbar">
-      <button class="btn" @click="createOrder">CREATE ORDER</button>
-    </header>
-
-    <SectionBlock>
-      <Container :columns="3">
-        <Card v-for="product in products" :key="product.id">
-          <div class="card--media">
-            <img :src="product.imageUrl" alt />
-          </div>
-          <div class="card--content">
-            <h3>{{product.name}}</h3>
-            <h3>{{product.maxPrice}} руб.</h3>
-          </div>
-          <div class="card--actions">
-            <Btn class="card--btn">Add to cart</Btn>
-          </div>
-        </Card>
-      </Container>
-    </SectionBlock>
-  </div>
+  <SectionBlock>
+    <Container :columns="3">
+      <Card v-for="product in products" :key="product.id">
+        <div class="card--media">
+          <img :src="product.imageUrl" />
+        </div>
+        <div class="card--content">
+          <h3>{{product.name}}</h3>
+          <h3>{{product.maxPrice}} руб.</h3>
+        </div>
+        <div class="card--actions">
+          <Btn class="card--btn" @click="addToCart(product)">Add to cart</Btn>
+        </div>
+      </Card>
+    </Container>
+  </SectionBlock>
 </template>
 
 <script>
@@ -39,21 +33,6 @@ export default {
     Btn
   },
 
-  data: () => ({
-    order: {
-      externalId: "",
-      firstName: "Rinat",
-      items: [
-        {
-          quantity: 2,
-          offer: {
-            externalId: "26"
-          }
-        }
-      ]
-    }
-  }),
-
   computed: {
     products() {
       return this.$store.getters.getProducts;
@@ -69,13 +48,10 @@ export default {
       await this.$store.dispatch("fetchProducts");
     },
 
-    async createOrder() {
-      await this.$store.dispatch("createOrder", this.order);
+    addToCart(item) {
+      console.log(item);
+      this.$store.dispatch("addToCart", item);
     }
   }
 };
 </script>
-
-<style lang="sass">
-
-</style>

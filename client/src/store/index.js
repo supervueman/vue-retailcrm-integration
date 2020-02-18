@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     order: {},
     orders: [],
-    products: []
+    products: [],
+    cart: []
   },
   mutations: {
     setOrders(state, payload) {
@@ -19,6 +20,16 @@ export default new Vuex.Store({
     },
     setProducts(state, payload) {
       state.products = payload;
+    },
+    addToCart(state, payload) {
+      payload.quantity = 1;
+      const item = state.cart.find(item => item.id === payload.id);
+
+      if (item) {
+        item.quantity += 1;
+      } else {
+        state.cart.push(payload);
+      }
     }
   },
   actions: {
@@ -45,10 +56,16 @@ export default new Vuex.Store({
       commit
     }) {
       const response = await axios.get('http://localhost:3000/products');
-      console.log(response)
+
       if (response.status === 200) {
         commit('setProducts', response.data);
       }
+    },
+
+    addToCart({
+      commit
+    }, payload) {
+      commit('addToCart', payload);
     }
   },
   getters: {
@@ -61,5 +78,8 @@ export default new Vuex.Store({
     getProducts(state) {
       return state.products;
     },
+    getCart(state) {
+      return state.cart;
+    }
   }
 });
