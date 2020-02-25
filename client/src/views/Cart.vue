@@ -83,7 +83,10 @@ export default {
         quantity: 1,
         productName: "Fallos",
         purchasePrice: 1000,
-        initialPrice: 1000
+        initialPrice: 1000,
+        offer: {
+          externalId: "23c"
+        }
       }];
 
       await this.$store.dispatch("createOrder", { ...this.order, items });
@@ -94,5 +97,5 @@ export default {
 
 <style lang="sass">
 .cart
-  padding: 50px 0
+  padding-bottom: 20px
 </style>
