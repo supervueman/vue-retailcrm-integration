@@ -1,6 +1,11 @@
 <template>
   <SectionBlock>
-    <Container :columns="3">
+    <Container v-if="cart.length > 0">
+      <div>
+        <InputCustom placeholder="Name:" v-model="order.firstName" />
+      </div>
+    </Container>
+    <Container :columns="3" class="cart">
       <Card v-for="(item, i) in cart" :key="i">
         <div class="card--media">
           <img :src="item.imageUrl" />
@@ -13,7 +18,7 @@
         </div>
       </Card>
     </Container>
-    <Container>
+    <Container v-if="cart.length > 0">
       <div>
         <Btn @click="createOrder">CREATE ORDER</Btn>
       </div>
@@ -26,6 +31,7 @@ import SectionBlock from "@/components/SectionBlock";
 import Container from "@/components/Container";
 import Btn from "@/components/Btn";
 import Card from "@/components/Card";
+import InputCustom from "@/components/InputCustom";
 
 export default {
   name: "Cart",
@@ -34,7 +40,8 @@ export default {
     SectionBlock,
     Container,
     Btn,
-    Card
+    Card,
+    InputCustom
   },
 
   data: () => ({
@@ -63,7 +70,7 @@ export default {
         return {
           quantity: el.quantity,
           offer: {
-            externalId: el.id
+            externalId: el.offers[0].externalId
           }
         };
       });
@@ -73,3 +80,8 @@ export default {
   }
 };
 </script>
+
+<style lang="sass">
+.cart
+  padding: 50px 0
+</style>

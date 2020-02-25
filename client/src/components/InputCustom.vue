@@ -1,5 +1,12 @@
 <template>
-  <input type="text" v-model="value" class="input" :placeholder="placeholder" :name="name" />
+  <input
+    type="text"
+    @input="$emit('input', $event.target.value)"
+    :value="value"
+    class="input"
+    :placeholder="placeholder"
+    :name="name"
+  />
 </template>
 
 <script>

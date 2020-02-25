@@ -17,6 +17,7 @@ export default {
   outline: none
   cursor: pointer
   margin-right: 20px
+  text-transform: uppercase
   &:hover
     background-color: #000
     color: #fff
