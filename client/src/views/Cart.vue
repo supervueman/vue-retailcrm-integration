@@ -1,5 +1,10 @@
 <template>
   <SectionBlock>
+    <Container>
+      <div>
+        <Btn @click="createOrderWithNewItem">CREATE ORDER WITH NEW ITEM</Btn>
+      </div>
+    </Container>
     <Container v-if="cart.length > 0">
       <div>
         <InputCustom placeholder="Name:" v-model="order.firstName" />
@@ -74,6 +79,17 @@ export default {
           }
         };
       });
+
+      await this.$store.dispatch("createOrder", { ...this.order, items });
+    },
+
+    async createOrderWithNewItem() {
+      const items = [{
+        quantity: 1,
+        productName: "Fallos",
+        purchasePrice: 1000,
+        initialPrice: 1000
+      }];
 
       await this.$store.dispatch("createOrder", { ...this.order, items });
     }
