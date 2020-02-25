@@ -1,15 +1,9 @@
 <template>
   <SectionBlock>
-    <Container>
-      <div>
-        <Btn @click="createOrderWithNewItem">CREATE ORDER WITH NEW ITEM</Btn>
-      </div>
+    <Container :columns="4">
+      <Btn @click="createOrderWithNewItem">CREATE ORDER WITH NEW ITEM</Btn>
     </Container>
-    <Container v-if="cart.length > 0">
-      <div>
-        <InputCustom placeholder="Name:" v-model="order.firstName" />
-      </div>
-    </Container>
+    <hr />
     <Container :columns="3" class="cart">
       <Card v-for="(item, i) in cart" :key="i">
         <div class="card--media">
@@ -25,6 +19,7 @@
     </Container>
     <Container v-if="cart.length > 0">
       <div>
+        <InputCustom placeholder="Name:" v-model="order.firstName" />
         <Btn @click="createOrder">CREATE ORDER</Btn>
       </div>
     </Container>
