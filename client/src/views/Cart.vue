@@ -2,6 +2,7 @@
   <SectionBlock>
     <Container :columns="4">
       <Btn @click="createOrderWithNewItem">CREATE ORDER WITH NEW ITEM</Btn>
+      <Btn @click="createOrderWithNewItem">CREATE ORDER WITH CREATED ITEM</Btn>
     </Container>
     <hr />
     <Container :columns="3" class="cart">
@@ -90,7 +91,17 @@ export default {
       }];
 
       await this.$store.dispatch("createOrder", { ...this.order, items });
-    }
+    },
+
+    async createOrderWithCreatedItem() {
+      const items = [{
+        offer: {
+          externalId: "23c"
+        }
+      }];
+
+      await this.$store.dispatch("createOrder", { ...this.order, items });
+    },
   }
 };
 </script>
